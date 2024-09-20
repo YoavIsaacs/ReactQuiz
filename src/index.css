@@ -101,6 +101,7 @@ header h1 {
   width: 50%;
   height: 0.5rem;
   border-radius: 24px;
+  border: none;
   background: #9e5ef8;
   margin: 0;
 }
