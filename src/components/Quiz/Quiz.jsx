@@ -2,6 +2,7 @@ import { useState, useCallback, useRef } from "react";
 import QUESTIONS from '../../questions.js'
 import quizCompleteImg from '../../assets/quiz-complete.png'
 import QuestionTimer from "../QuestionTimer/QuestionTimer.jsx";
+import Answers from "../Answers/Answer.jsx";
 
 export default function Quiz() {
 
@@ -57,24 +58,7 @@ export default function Quiz() {
             <div id="question">
                 <QuestionTimer timeout={5000} onTimeout={handleSkipAnswer} key={activeQuestionIndex} />
                 <h2>{QUESTIONS[activeQuestionIndex].text}</h2>
-                <ul id="answers">
-                    {shuffledAnswers.current.map((answer) => {
-                        const isSelected = userAnswers[userAnswers.length - 1] === answer;
-                        let cssClass = "";
-
-                        if (isSelected && answerState === "answered") {
-                            cssClass = "selected";
-                        }
-
-                        if ((answerState === "correct" || answerState === "wrong") && isSelected) {
-                            cssClass = answerState;
-                        }
-
-                        return (
-                            <li key={answer} className="answer"><button className={cssClass} onClick={() => handleSelectAnswer(answer)}>{answer}</button></li>
-                        );
-                    })}
-                </ul>
+                <Answers answers={QUESTIONS[activeQuestionIndex].answers} selectedAnswer={userAnswers[userAnswers.length - 1]} answerState={answerState} /> 
             </div>
         </div>
 
