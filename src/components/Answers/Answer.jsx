@@ -1,8 +1,8 @@
 import { useRef } from "react";
 
 export default function Answers({ answers, selectedAnswer, answerState, onSelect }) {
-    
-    
+
+
     const shuffledAnswers = useRef(null);
 
     if (!shuffledAnswers.current) {

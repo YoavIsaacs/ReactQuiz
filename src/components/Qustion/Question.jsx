@@ -1,17 +1,16 @@
 import QuestionTimer from "../QuestionTimer/QuestionTimer";
 import Answers from "../Answers/Answer";
 
-export default function Question({ questionText, answers, onSelectAnswer }) {
+export default function Question({ questionText, answers, onSelectAnswer, selectedAnswer, answerState, onSkipAnswer }) {
     return (
         <div id="question">
-            <QuestionTimer timeout={5000} onTimeout={handleSkipAnswer} key={activeQuestionIndex} />
-            <h2>{QUESTIONS[activeQuestionIndex].text}</h2>
+            <QuestionTimer timeout={5000} onTimeout={onSkipAnswer} />
+            <h2>{questionText}</h2>
             <Answers
-                key={activeQuestionIndex}
-                answers={QUESTIONS[activeQuestionIndex].answers}
-                selectedAnswer={userAnswers[userAnswers.length - 1]}
+                answers={answers}
+                selectedAnswer={selectedAnswer}
                 answerState={answerState}
-                onSelect={handleSelectAnswer}
+                onSelect={onSelectAnswer}
             />
         </div>
     );
